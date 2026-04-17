@@ -1,0 +1,126 @@
+/* --- DESIGN SYSTEM & VARIABLES --- */
+:root {
+    /* Colors */
+    --primary: #00ADEF;
+    --secondary: #000000;
+    --accent: #FFFFFF;
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    
+    /* Spacing & Borders */
+    --gap-md: 20px;
+    --radius: 8px;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- MODO ALTO CONTRASTE --- */
+body.high-contrast {
+    --primary: #ffff00;
+    --secondary: #000000;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent: #ffff00;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background 0.3s ease;
+}
+
+/* --- LAYOUT --- */
+header {
+    background: var(--secondary);
+    color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* GRID RESPONSIVO (Edite as colunas aqui) */
+.grid-container {
+    display: grid;
+    gap: var(--gap-md);
+    padding: var(--gap-md);
+    /* Mobile-first: 1 coluna */
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        /* Tablet/Desktop: 3 colunas */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- COMPONENTES --- */
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(20px);
+    opacity: 0; /* Para Scroll Reveal */
+    transition: var(--transition);
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    background: var(--primary);
+    color: white;
+    padding: 2rem;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: inherit;
+}
+
+.accordion-content {
+    display: none;
+    padding: 1rem;
+}
+
+.accordion-content.active { display: block; }
+
+/* Skip Link para teclado */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 2000;
+}
+.skip-link:focus { top: 0; }
